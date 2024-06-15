@@ -1,0 +1,88 @@
+body {
+  font-family: "Notion", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+h1 {
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+#heatmap {
+  padding: 20px;
+  width: 100%;
+}
+
+#legend {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+#legend.show {
+  display: block;
+}
+
+#legend .legend-close {
+  float: right;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.legend-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.legend-content .legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.legend-content .legend-item div {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.legend-content .legend-item span {
+  font-size: 14px;
+}
+
+/* Tooltip styling */
+.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 6px;
+  font-size: 12px;
+  background: lightsteelblue;
+  border: 0;
+  border-radius: 4px;
+  pointer-events: none;
+}
