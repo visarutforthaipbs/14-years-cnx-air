@@ -23,17 +23,17 @@ d3.json("pm25_formatted.json").then(function (data) {
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
+  // Define new color scale according to the provided image for PM2.5 (µg/m³)
   const color = d3
     .scaleThreshold()
-    .domain([0, 50, 100, 150, 200, 300, Infinity])
+    .domain([9, 35.4, 55.4, 125.4, 225.4, Infinity])
     .range([
-      "#00e400", // 0-50 (Good)
-      "#00e400", // For values <= 50
-      "#ffff00", // 51-100 (Moderate)
-      "#ff7e00", // 101-150 (Unhealthy for Sensitive Groups)
-      "#ff0000", // 151-200 (Unhealthy)
-      "#8f3f97", // 201-300 (Very Unhealthy)
-      "#7e0023", // >300 (Hazardous)
+      "#00ff00", // ≤9.0 (Good)
+      "#ffff00", // 9.1-35.4 (Moderate)
+      "#ffa500", // 35.5-55.4 (Unhealthy for Sensitive Groups)
+      "#ff4500", // 55.5-125.4 (Unhealthy)
+      "#800080", // 125.5-225.4 (Very Unhealthy)
+      "#800000", // ≥225.5 (Hazardous)
       "#ccc", // For No Data
     ]);
 
@@ -70,27 +70,27 @@ d3.json("pm25_formatted.json").then(function (data) {
             .attr("y", yOffset(d3.timeFormat("%U")(week), 0))
             .attr("fill", value !== null ? color(value) : "#ccc")
             .attr("stroke", "#fff")
-            .on("mouseover", function (event, d) {
+            .on("mouseover", function (event) {
               tooltip.transition().duration(200).style("opacity", 0.9);
             })
-            .on("mousemove", function (event, d) {
+            .on("mousemove", function (event) {
               const tooltipText = `${dayKey}<br>`;
               let tooltipLabel = "";
 
               if (value === null) {
-                tooltipLabel = "ไม่มีข้อมูล"; // Indicate no data
-              } else if (value <= 50) {
-                tooltipLabel = "อากาศดี"; // Good
-              } else if (value <= 100) {
-                tooltipLabel = "คุณภาพอากาศปานกลาง"; // Moderate
-              } else if (value <= 150) {
-                tooltipLabel = "ไม่ดีต่อกลุ่มเสี่ยง"; // Unhealthy for Sensitive Groups
-              } else if (value <= 200) {
-                tooltipLabel = "ไม่ดี"; // Unhealthy
-              } else if (value <= 300) {
+                tooltipLabel = "ไม่มีข้อมูล"; // No Data
+              } else if (value <= 9) {
+                tooltipLabel = "อากาศดี (≤9.0 µg/m³)"; // Excellent
+              } else if (value <= 35.4) {
+                tooltipLabel = "ปานกลาง"; // Good
+              } else if (value <= 55.4) {
+                tooltipLabel = "มีผลต่อกลุ่มเสี่ยง (35.5-55.4 µg/m³)"; // Moderate
+              } else if (value <= 125.4) {
+                tooltipLabel = "มีผลต่อสุขภาพ"; // Unhealthy
+              } else if (value <= 225.4) {
                 tooltipLabel = "อันตรายมาก"; // Very Unhealthy
               } else {
-                tooltipLabel = "อันตราย"; // Hazardous
+                tooltipLabel = "ภัยพิบัติ"; // Hazardous
               }
 
               tooltip
