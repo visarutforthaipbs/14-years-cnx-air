@@ -80,11 +80,11 @@ d3.json("pm25_formatted.json").then(function (data) {
               if (value === null) {
                 tooltipLabel = "ไม่มีข้อมูล"; // No Data
               } else if (value <= 9) {
-                tooltipLabel = "อากาศดี (≤9.0 µg/m³)"; // Excellent
+                tooltipLabel = "อากาศดี"; // Excellent
               } else if (value <= 35.4) {
                 tooltipLabel = "ปานกลาง"; // Good
               } else if (value <= 55.4) {
-                tooltipLabel = "มีผลต่อกลุ่มเสี่ยง (35.5-55.4 µg/m³)"; // Moderate
+                tooltipLabel = "มีผลต่อกลุ่มเสี่ยง"; // Moderate
               } else if (value <= 125.4) {
                 tooltipLabel = "มีผลต่อสุขภาพ"; // Unhealthy
               } else if (value <= 225.4) {
