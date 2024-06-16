@@ -4,3 +4,5 @@
 รวบรวมโดย Pm2.5 aqi thailand และจัดเรียงสีโดยอิงจากค่าความเข้มข้นของฝุ่นละออง PM2.5 ตามมาตรฐาน us.epa
 
 ** กำลังทดสอบการอัพเดททุกๆ วัน 8 โมงเช้า จาก API ของ Air4Thai **
+
+https://github.com/visarutforthaipbs/14-years-cnx-air/blob/main/cover%20url.png
