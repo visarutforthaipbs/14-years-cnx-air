@@ -154,3 +154,45 @@ d3.json("pm25_formatted.json").then(function (data) {
     .attr("class", "tooltip")
     .style("opacity", 0);
 });
+
+// Function to convert JSON to CSV
+function jsonToCsv(json) {
+  const fields = Object.keys(json[0]);
+  const replacer = (key, value) => (value === null ? "" : value); // Handle null values
+  const csv = json.map((row) =>
+    fields
+      .map((fieldName) => JSON.stringify(row[fieldName], replacer))
+      .join(",")
+  );
+  csv.unshift(fields.join(",")); // Add header row
+  return csv.join("\r\n");
+}
+
+// Function to download the CSV file
+function downloadCsv(data, filename) {
+  const blob = new Blob([data], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+
+  if (link.download !== undefined) {
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", filename);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
+
+// Load the JSON data and setup the download button
+d3.json("pm25_formatted.json").then(function (data) {
+  // Existing code for heatmap visualization here...
+
+  // Add event listener to the download button
+  document
+    .getElementById("download-csv")
+    .addEventListener("click", function () {
+      const csvData = jsonToCsv(data);
+      downloadCsv(csvData, "pm25_data.csv");
+    });
+});

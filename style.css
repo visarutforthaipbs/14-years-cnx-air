@@ -65,3 +65,55 @@ main {
 .legend-item span {
   font-size: 12px;
 }
+
+/* Styling for the button and the sticky popup container */
+#popup-container {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  z-index: 1000; /* Ensure it stays on top */
+}
+
+#download-csv {
+  padding: 10px 20px;
+  background-color: #008cba; /* Notion-like blue color */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  font-family: "Noto Sans Thai", sans-serif;
+}
+
+#download-csv:hover {
+  background-color: #005f6a; /* Darker blue for hover effect */
+}
+
+/* Styling for the header and main content to avoid overlapping with the sticky popup */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
